@@ -1,0 +1,10 @@
+{
+    "title": "Smart Window",
+    "info": "A take on a smart window that self closses if no one is inside the room. Using Radar to scan the room and a ESP 8266 microcontroller to handle the logic.",
+    "picture": null,
+    "color": "#6b9ff2",
+    "button": true,
+    "button_picture": "<i class=\"devicon-github-plain\"></i>",
+    "buttonLinksTo": "GitHub",
+    "link": "https://github.com/HellRhox/SmartWindow"
+}

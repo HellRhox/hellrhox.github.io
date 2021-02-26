@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+      "module": "amd",
+      "noImplicitAny": true,
+      "esModuleInterop": true,
+      "sourceMap": true,
+      "jsx": "react",
+      "jsxFactory": "tsx",
+      "target": "es6",
+      "experimentalDecorators": true,
+      "preserveConstEnums": true,
+      "suppressImplicitAnyIndexErrors": true,
+      "outDir":"./Resources/Scripts/JavaScript/"
+    },
+    "include": [
+      "./Resources/Scripts/Typescript/*"
+    ],
+    "exclude": [
+      "node_modules"
+    ]
+  }

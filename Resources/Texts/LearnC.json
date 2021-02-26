@@ -1,0 +1,11 @@
+{
+    "title": "Contribution to learn c.org",
+    "info": "Contributed to the German part of the C tutorial. namely the part about unions.",
+    "short": "CU",
+    "picture": null,
+    "color": null,
+    "button": true,
+    "button_picture": null,
+    "buttonLinksTo": "Learn-C",
+    "link": "https://www.learn-c.org/de/Unions"
+}

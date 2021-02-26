@@ -1,0 +1,11 @@
+{
+    "title": "Placeholder",
+    "info": "This is a placeholder for another smaller project",
+    "short": "PH",
+    "picture": null,
+    "color": "#3deb34",
+    "button": false,
+    "button_picture": "<i class=\"devicon-github-plain\"></i>",
+    "buttonLinksTo": "GitHub",
+    "link": "https://github.com/HellRhox/hellrhox.github.io"
+}

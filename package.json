@@ -1,0 +1,26 @@
+{
+    "name": "hellrhox.github.io",
+    "version": "1.0.0",
+    "description": "Project overview page",
+    "repository": {
+        "type": "git",
+        "url": "git+nphttps://github.com/HellRhox/hellrhox.github.io"
+    },
+    "scripts": {
+        "start": "browser-sync -s -w --startPath index.html",
+        "dev": "tsc -w"
+    },
+    "author": "Yannick Bayard <ya.bayard@gmail.com>",
+    "license": "Apache-2.0",
+    "dependencies": {
+        "bootstrap": "^4.4.1",
+        "http": "0.0.1-security"
+    },
+    "devDependencies": {
+        "@types/node": "^13.13.5",
+        "bootstrap-icons": "^1.0.0-alpha3",
+        "browser-sync": ">=2.26.7",
+        "tslint": "^5.16.0",
+        "typescript": "^3.8.3"
+    }
+}

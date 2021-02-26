@@ -1,0 +1,11 @@
+{
+    "title": "Survarium Calculator",
+    "info": "A small calculator for a game I used to play",
+    "short": "SC",
+    "picture": null,
+    "color": "#bf243c",
+    "button": true,
+    "button_picture": "<i class=\"devicon-github-plain\"></i>",
+    "buttonLinksTo": "GitHub",
+    "link": "https://github.com/HellRhox/Survarium-Calculator"
+}
