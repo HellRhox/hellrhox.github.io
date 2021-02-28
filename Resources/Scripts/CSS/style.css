@@ -46,6 +46,12 @@ body {
     background-color: #fff;
 
 }
+.header {
+  z-index: 1;
+}
+.content {
+  z-index: 2;
+}
 
 .construction{
     padding-top: 25%;
@@ -59,6 +65,7 @@ body {
   /* Carousel base class */
   .carousel {
     margin-bottom: 4rem;
+    z-index: -1;
   }
   /* Since positioning the image, we need to help out the caption */
   .carousel-caption {
@@ -164,6 +171,13 @@ body {
   font-size: xxx-large;
   
 }
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
 
 user agent stylesheet
 div {
