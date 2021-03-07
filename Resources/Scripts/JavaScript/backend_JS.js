@@ -127,7 +127,7 @@ class SmallProjects {
             str += '<svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140">' + "\n";
             str += '<title>Placeholder</title>' + "\n";
             str += '<rect width="100%" height="100%" fill="' + smallProject.color + '"/>' + "\n";
-            str += '<text class="placeholder" x="25%" y="60%" fill="#fff">' + smallProject.short + '</text></svg>';
+            str += '<text class="placeholder" font-size="45" text-anchor="middle" alignment-baseline="central" fill="#fff"> <tspan x="50%" dy="60%">' + smallProject.short + '</tspan></text></svg>';
         }
         else {
             str += '<img class="bd-img rounded-circle" width="140" height="140" src=' + smallProject.picture + '" alt="' + smallProject.short + '"/>';
@@ -155,12 +155,14 @@ class SmallProjects {
 /*MAIN*/
 let carusel = new Carusel;
 let smallProjects = new SmallProjects;
-document.getElementById("Projects").addEventListener("click", changeActivNavItem);
-document.getElementById("Skills").addEventListener("click", changeActivNavItem);
-document.getElementById("Contact").addEventListener("click", changeActivNavItem);
-document.getElementById("Title").addEventListener("click", changeMode);
-document.addEventListener("DOMContentLoaded", start);
-function start() {
+document.addEventListener("DOMContentLoaded", () => { start(true); });
+function start(firstRun) {
+    if (firstRun) {
+        document.getElementById("Projects").addEventListener("click", changeActivNavItem);
+        document.getElementById("Skills").addEventListener("click", changeActivNavItem);
+        document.getElementById("Contact").addEventListener("click", changeActivNavItem);
+        document.getElementById("Title").addEventListener("click", changeMode);
+    }
     let activNavItem = document.getElementsByClassName("nav-item active")[0].children[0].textContent;
     if (activNavItem == "Projects") {
         loadSubSite(activNavItem);
@@ -185,7 +187,7 @@ function changeActivNavItem(e) {
     }
     navItem.setAttribute("class", "nav-link disabled");
     navItem.parentElement.setAttribute("class", "nav-item active");
-    dispatchEvent(new Event("DOMContentLoaded"));
+    start(false);
 }
 function loadSubSite(name) {
     let xhttp = new XMLHttpRequest();
