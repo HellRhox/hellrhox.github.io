@@ -162,7 +162,6 @@ function start(firstRun) {
         document.getElementById("Projects").addEventListener("click", changeActivNavItem);
         document.getElementById("Skills").addEventListener("click", changeActivNavItem);
         document.getElementById("Contact").addEventListener("click", changeActivNavItem);
-        document.getElementById("Title").addEventListener("click", changeMode);
     }
     let activNavItem = document.getElementsByClassName("nav-item active")[0].children[0].textContent;
     if (activNavItem == "Projects") {
@@ -207,10 +206,5 @@ function loadSubSite(name) {
             console.log("HTTP Error " + xhttp.status + "\nwhile loading " + name.toLowerCase + ".html file");
         }
     };
-}
-function changeMode() {
-    //TODO Dark/Light Mode switch. (cokies ?)
-    console.log("Give it to me Baby");
-    console.log("aha aha");
 }
 //# sourceMappingURL=backend_JS.js.map
