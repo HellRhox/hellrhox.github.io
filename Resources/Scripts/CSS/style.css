@@ -84,8 +84,7 @@ body {
     min-width: 100%;
     height: 32rem;
   }
-  
-  
+
   /* MARKETING CONTENT
   -------------------------------------------------- */
   
@@ -167,6 +166,7 @@ body {
 }
 
 .placeholder{
+  position: relative;
   text-align: center;
   font-size: xxx-large;
   
