@@ -166,6 +166,7 @@ class SmallProjects {
 let carusel: Carusel = new Carusel;
 let smallProjects: SmallProjects = new SmallProjects;
 
+document.addEventListener("touchstart", function(){}, true);
 document.addEventListener("DOMContentLoaded", () => { start(true) });
 
 function start(firstRun: boolean) {
