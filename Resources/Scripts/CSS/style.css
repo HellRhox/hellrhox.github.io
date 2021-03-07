@@ -197,3 +197,14 @@ h1 {
 h2 {
     text-align: center;
 }
+
+body {
+  background-color: rgb(41, 41, 41);
+  color: white;
+}
+@media screen and (prefers-color-scheme: light) {
+  body {
+    background-color: white;
+    color: black;
+  }
+}
