@@ -17,11 +17,11 @@
   <title>Portfolio Yannick Bayard</title>
 </head>
 
-<body>
+<body id="body">
 
-  <header>
+  <header class="header" id="stickyHead">
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <a class="navbar-brand" href="#">Portfolio</a>
+      <a class="navbar-brand" type="disabled" id="Title">Portfolio</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
         aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -29,49 +29,25 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Projects <span class="sr-only">(current)</span></a>
+            <a class="nav-link disabled" type="button" id="Projects">Projects</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Skills</a>
+            <a class="nav-link disabled" type="button" id="Skills">Skills</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Contact</a>
+            <a class="nav-link disabled" type="button" id="Contact">Contact</a>
           </li>
         </ul>
       </div>
     </nav>
   </header>
 
-  <main role="main">
-
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-      <ol class="carousel-indicators">
-
-      </ol>
-      <div class="carousel-inner" id="carousel-frame">
-      </div>
-      <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-    </div>
-    <div class="container smallprojects">
-
-      <!-- Smaller Projects -->
-      <h1>Here some smaller projects:</h1>
-      <br>
-      <div class="row" id="sp">
-      </div>
-    </div>
-  </main>
 
 
   <script src="/Resources/Scripts/JavaScript/backend_JS.js"></script>
   <!--<script src="/Resources/Scripts/JavaScript/backend_PHP.js"></script> for use with full webserver and php-->
+  <script src="/Resources/Scripts/JavaScript/stickyHead.js"></script>
+
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
     integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
     crossorigin="anonymous"></script>
