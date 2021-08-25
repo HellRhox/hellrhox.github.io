@@ -3,6 +3,7 @@ class Carusel {
 
     public constructor() {
     }
+
     /**Starts the carusel build and loads the BigProjects-Index.json file */
     public carusel() {
         let xhttp: XMLHttpRequest = new XMLHttpRequest();
@@ -15,12 +16,12 @@ class Carusel {
                 xhttp.response.forEach((item: index, pos: number) => {
                     this.readListItem(item, pos);
                 })
-            }
-            else if (xhttp.status != 200) {
+            } else if (xhttp.status != 200) {
                 console.log(xhttp.readyState);
             }
         }
     }
+
     /**reads each item of BigProjects-Index.json and loads the indexed files */
     private readListItem(item: index, pos: number) {
         let request: XMLHttpRequest = new XMLHttpRequest();
@@ -34,6 +35,7 @@ class Carusel {
             }
         }
     }
+
     /**builds the overview of the carusel*/
     private buildList(number: number) {
         let text: string;
@@ -42,8 +44,7 @@ class Carusel {
         for (let i = 0; i < number; i++) {
             if (i === 0) {
                 active = ' class="active"';
-            }
-            else {
+            } else {
                 active = ' class';
             }
             text += "<li data-target=\"#myCarousel\" data-slide-to=" + i + active + "></li>";
@@ -51,13 +52,13 @@ class Carusel {
         let element = document.getElementsByClassName("carousel-indicators").item(0);
         element.insertAdjacentHTML('afterbegin', text);
     }
+
     /**takes each project file indext by BigProjects-Index.json and turns them into a card for the carusel slide */
     public buildCarousel(carouselItems: projects, pos: number) {
         let str: string;
         if (pos === 0) {
             str = '<div class="carousel-item active">' + "\n";
-        }
-        else {
+        } else {
             str = '<div class="carousel-item">' + "\n";
         }
         if (carouselItems.color == null) {
@@ -65,8 +66,7 @@ class Carusel {
         }
         if (carouselItems.picture == null) {
             str += '<svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice\" focusable=\"false\" role=\"img\"><rect width=\"100%\" height=\"100%\" fill="' + carouselItems.color + '"/></svg>' + "\n";
-        }
-        else {
+        } else {
             str += '<img class="bd-img" width="100%" height="100%" src="' + carouselItems.picture + '"/>'
         }
         str += '<div class="container">' + "\n";
@@ -81,6 +81,7 @@ class Carusel {
         str += "</div>" + "\n";
         this.addCaruselToHTML(str)
     }
+
     /**Adds the html of the carusel to the rest of the site */
     private addCaruselToHTML(html: string) {
         let element = document.getElementById("carousel-frame");
@@ -88,10 +89,12 @@ class Carusel {
         element.insertAdjacentHTML("beforeend", html);
     }
 }
+
 /**Class for building a list of smaller projects on the webpage*/
 class SmallProjects {
 
-    public constructor() { }
+    public constructor() {
+    }
 
     public smallProjects() {
         let spRequest: XMLHttpRequest = new XMLHttpRequest();
@@ -134,8 +137,7 @@ class SmallProjects {
             str += '<title>Placeholder</title>' + "\n"
             str += '<rect width="100%" height="100%" fill="' + smallProject.color + '"/>' + "\n";
             str += '<text class="placeholder" font-size="45" text-anchor="middle" alignment-baseline="central" fill="#fff"> <tspan x="50%" dy="60%">' + smallProject.short + '</tspan></text></svg>'
-        }
-        else {
+        } else {
             str += '<img class="bd-img rounded-circle" width="140" height="140" src=' + smallProject.picture + '" alt="' + smallProject.short + '"/>'
         }
         str += "<h2>" + smallProject.title + "</h2>" + "\n";
@@ -166,8 +168,11 @@ class SmallProjects {
 let carusel: Carusel = new Carusel;
 let smallProjects: SmallProjects = new SmallProjects;
 
-document.addEventListener("touchstart", function(){}, true);
-document.addEventListener("DOMContentLoaded", () => { start(true) });
+document.addEventListener("touchstart", function () {
+}, true);
+document.addEventListener("DOMContentLoaded", () => {
+    start(true)
+});
 
 function start(firstRun: boolean) {
     if (firstRun) {
@@ -181,15 +186,14 @@ function start(firstRun: boolean) {
         loadSubSite(activNavItem);
         carusel.carusel();
         smallProjects.smallProjects();
-    }
-    else if (activNavItem == "Skills") {
+    } else if (activNavItem == "Skills") {
         loadSubSite(activNavItem)
 
-    }
-    else if (activNavItem == "Contact") {
+    } else if (activNavItem == "Contact") {
         loadSubSite(activNavItem)
     }
 }
+
 /** Changes the active NavItem to the clicked one*/
 function changeActivNavItem(e: Event) {
     //@ts-ignore
@@ -216,8 +220,7 @@ function loadSubSite(name: String) {
                 oldsubsite.remove()
             }
             document.getElementById("stickyHead").insertAdjacentHTML("afterend", xhttp.response);
-        }
-        else if (xhttp.status != 200) {
+        } else if (xhttp.status != 200) {
             console.log("HTTP Error " + xhttp.status + "\nwhile loading " + name.toLowerCase + ".html file");
         }
     }

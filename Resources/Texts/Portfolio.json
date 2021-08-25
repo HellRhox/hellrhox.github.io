@@ -1,10 +1,10 @@
 {
-    "title": "This Portfoliosite",
-    "info": "This is a self made portfoliosite hostet from a GitHub reposetory.<br>Klick the button to watch it",
-    "picture": null,
-    "color": "#bf243c",
-    "button": true,
-    "button_picture": "<i class=\"devicon-github-plain\"></i>",
-    "buttonLinksTo": "GitHub",
-    "link": "https://github.com/HellRhox/hellrhox.github.io"
+  "title": "This Portfoliosite",
+  "info": "This is a self made portfoliosite hostet from a GitHub reposetory.<br>Klick the button to watch it",
+  "picture": null,
+  "color": "#bf243c",
+  "button": true,
+  "button_picture": "<i class=\"devicon-github-plain\"></i>",
+  "buttonLinksTo": "GitHub",
+  "link": "https://github.com/HellRhox/hellrhox.github.io"
 }

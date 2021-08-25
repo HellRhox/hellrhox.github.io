@@ -89,7 +89,8 @@ class Carusel {
 }
 /**Class for building a list of smaller projects on the webpage*/
 class SmallProjects {
-    constructor() { }
+    constructor() {
+    }
     smallProjects() {
         let spRequest = new XMLHttpRequest();
         spRequest.open("GET", "Resources/Texts/SmallProjects-Index.json", true);
@@ -155,8 +156,11 @@ class SmallProjects {
 /*MAIN*/
 let carusel = new Carusel;
 let smallProjects = new SmallProjects;
-document.addEventListener("touchstart", function () { }, true);
-document.addEventListener("DOMContentLoaded", () => { start(true); });
+document.addEventListener("touchstart", function () {
+}, true);
+document.addEventListener("DOMContentLoaded", () => {
+    start(true);
+});
 function start(firstRun) {
     if (firstRun) {
         document.getElementById("Projects").addEventListener("click", changeActivNavItem);
