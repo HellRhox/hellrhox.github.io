@@ -2,7 +2,7 @@
 Work in Progress
 
 This is my Protfolio.
-After the first itteration of it of it had security flaws I build a new one with inspiration from some templates I found online.
+After the first itteration of it had security flaws I build a new one with inspiration from some templates I found online.
 
 ## What can it do ?
 
