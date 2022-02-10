@@ -5,3 +5,6 @@ package-lock.json
 Resources/Pictures/stars.jpg
 Resources/Pictures/babyYoda.jpg
 .vscode/settings.json
+/composer.json
+/vendor/
+package.json

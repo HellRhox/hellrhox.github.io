@@ -10,11 +10,11 @@ let reload = browserSync.reload;
 
 let paths = {
 
-    html: ['index.html', 'Resources/Subsites/contact.html', 'Resources/Subsites/projects.html', 'Resources/Subsites/skills.html'],
+    html: ['index.html', 'Resources/Subsites/*.html'],
     css: ['Resources/Scripts/CSS/style.css'],
-    typeScript: ['Resources/Scripts/Typescript/backend_JS.ts', 'Resources/Scripts/Typescript/backend_PHP.ts'],
-    javaScripts: ['Resources/Scripts/JavaScript/backend_JS.js', 'Resources/Scripts/JavaScript/backend_JS.js', 'Resources/Scripts/JavaScript/backend_JS.js'],
-    phpSkripts: ['Resources/Scripts/PHP/backend.php', 'Resources/Scripts/PHP/inc/Carusel.php']
+    typeScript: ['Resources/Scripts/Typescript/*.ts'],
+    javaScripts: ['Resources/Scripts/JavaScript/*.js'],
+    phpSkripts: ['Resources/Scripts/PHP/*.php', 'Resources/Scripts/PHP/inc/*.php']
 };
 // HTML reload Task
 gulp.task('html', function () {
@@ -48,10 +48,10 @@ gulp.task('phpSkripts', function () {
 
 // BrowserSync starting Task with php
 gulp.task('browserSync', function () {
-    let result=connectPHP.server({}, function () {
-        console.log(result)
+    let result = connectPHP.server({base:'./',keepalive:true}, function () {
         browserSync({
-            proxy: '127.0.0.1:8080',
+            proxy: '127.0.0.1:8000',
+            port: '8080',
         });
     });
 });
@@ -87,5 +87,6 @@ function createWatcher(paths, tasks) {
         gulp.watch(item, gulp.series(tasks[index]))
     })
 }
+
 //init all to default
 gulp.task('default', gulp.parallel('watcher', 'browserSync'));

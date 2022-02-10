@@ -1,8 +1,8 @@
 <?php
 
-namespace PHP\inc;
+namespace inc;
 
-class Carusel
+class Carousel
 {
 	private const LIST_ITEM = "<li data-target=\"#myCarousel\" data-slide-to= %d class%s></li>";
 	private const CAROUSEL_ITEMS = [
@@ -16,7 +16,7 @@ class Carusel
 		"caruselWithoutPicture" => "<svg class=\"bd-placeholder-img\" width=\"100 %\" height=\"100 %\" xmlns=\"http://www.w3.org/2000/svg\" preserveAspectRatio=\"xMidYMid slice\" focusable=\"false\" role=\"img\"><rect width=\"100%\" height=\"100%\" fill=\"%s\"/></svg>",
 	];
 	private array $htmlListItems;
-	private object $projectIndex;
+	private array $projectIndex;
 
 	public function __construct() {
 		$this->buildList();
@@ -31,9 +31,9 @@ class Carusel
 	}
 
 	/**
-	 * @param object $projectIndex
+	 * @param array $projectIndex
 	 */
-	public function setProjectIndex(object $projectIndex): void {
+	public function setProjectIndex(array $projectIndex): void {
 		$this->projectIndex = $projectIndex;
 	}
 
@@ -63,7 +63,7 @@ class Carusel
 			$items[] = sprintf(self::LIST_ITEM, $i, $classValue);
 		}
 		$this->setProjectIndex($projectIndex);
-		$this->htmlListItems($items);
+		$this->setHtmlListItems($items);
 	}
 
 	function buildCarusel() {
