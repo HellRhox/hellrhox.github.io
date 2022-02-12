@@ -3,8 +3,8 @@ document.addEventListener("touchstart", function () {
 document.addEventListener("DOMContentLoaded", () => {
     startPHP(true)
 });
-//helloo
-// @ts-ignore
+
+
 function startPHP(firstRun: boolean) {
     if (firstRun) {
         document.getElementById("Projects").addEventListener("click", changeActiveNavItemPHP);
@@ -15,7 +15,7 @@ function startPHP(firstRun: boolean) {
     let activNavItem = document.getElementsByClassName("nav-item active")[0].children[0].textContent
     if (activNavItem == "Projects") {
         loadsubSitephp(activNavItem);
-        buildCarusel();
+        buildCarousel();
         // smallProjects.smallProjects();
     } else if (activNavItem == "Skills") {
         loadsubSitephp(activNavItem)
@@ -59,36 +59,22 @@ function loadsubSitephp(name: String) {
 }
 
 
-function buildCarusel() {
+function buildCarousel() {
     let request: XMLHttpRequest = new XMLHttpRequest();
-    request.open("GET", "Resources/Scripts/PHP/backend.php", true);
-    request.responseType = 'json';
-    request.send();
-    request.onreadystatechange = () => {
+    request.open("post", "Resources/Scripts/PHP/backend.php", true);
+    // request.responseType = 'json';
+    request.onload = () => {
         if (request.readyState == 4 && request.status == 200) {
-            console.log(this.response);
+            let response = JSON.parse(request.response);
+            console.log(response);
             let element = document.getElementsByClassName("carousel-indicators").item(0);
-            element.insertAdjacentHTML('afterbegin', this.response);
-            console.log(this.response);
+            element.insertAdjacentHTML('afterbegin', response.data);
         } else if (request.status != 200) {
-            console.log(request.readyState);
+            let response = JSON.parse(request.response);
+            console.log(response.message);
         }
     }
-}
-
-
-interface projects {
-    title: string;
-    short: string;
-    info: string;
-    picture: string;
-    color: string;
-    button: boolean;
-    button_picture: string;
-    buttonLinksTo: string;
-    link: string;
-}
-
-interface index {
-    title: string;
+    request.send(
+        '{"function":"buildCarousel"}'
+    );
 }
