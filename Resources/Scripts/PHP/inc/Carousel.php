@@ -44,6 +44,10 @@ class Carousel
 		return $this->htmlListItems;
 	}
 
+	public function getHtmlListItemsAsHtml(){
+		return implode("\n",$this->getHtmlListItems());
+	}
+
 	/**
 	 * @return object
 	 */
@@ -68,7 +72,7 @@ class Carousel
 
 	function buildCarusel() {
 		foreach ($this->projectIndex as $pos => $index) {
-			var_dump($pos, $index);
+			//var_dump($pos, $index);
 		}
 	}
 
