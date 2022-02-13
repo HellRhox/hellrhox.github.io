@@ -74,7 +74,7 @@ class Carusel {
         str += "<h1>" + carouselItems.title + "</h1>" + "\n";
         str += "<p>" + carouselItems.info + "</p>" + "\n";
         if (carouselItems.button == true) {
-            str += '<p><a class="btn btn-lg btn-primary" href="' + carouselItems.link + '" role="button">' + carouselItems.button_picture + " " + carouselItems.buttonLinksTo + '</a></p>' + "\n";
+            str += '<p class="buttonContainer"><a class="btn btn-lg btn-primary" href="' + carouselItems.link + '" role="button">' + carouselItems.button_picture + " " + carouselItems.buttonLinksTo + '</a></p>' + "\n";
         }
         str += "</div>" + "\n";
         str += "</div>" + "\n";
