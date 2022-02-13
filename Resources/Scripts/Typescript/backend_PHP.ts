@@ -41,40 +41,60 @@ function changeActiveNavItemPHP(e: Event) {
 }
 
 function loadsubSitephp(name: String) {
-    let xhttp: XMLHttpRequest = new XMLHttpRequest();
-    xhttp.open("GET", "Resources/Subsites/" + name.toLowerCase() + ".html", true)
-    xhttp.responseType = 'text';
-    xhttp.send();
-    xhttp.onreadystatechange = () => {
-        if (xhttp.readyState == 4 && xhttp.status == 200) {
+    let request: XMLHttpRequest = new XMLHttpRequest();
+    request.open("post", "Resources/Scripts/PHP/backend.php/", true)
+    request.onload = () => {
+        if (request.readyState == 4 && request.status == 200) {
+            let response = JSON.parse(request.response);
             let oldsubsite = document.getElementsByClassName("content").item(0);
             if (oldsubsite != null) {
                 oldsubsite.remove()
             }
-            document.getElementById("stickyHead").insertAdjacentHTML("afterend", xhttp.response);
-        } else if (xhttp.status != 200) {
-            console.log("HTTP Error " + xhttp.status + "\nwhile loading " + name.toLowerCase + ".html file");
+            document.getElementById("stickyHead").insertAdjacentHTML("afterend", response.data);
+        } else if (request.status != 200) {
+            let response = JSON.parse(request.response);
+            console.log("HTTP Error " + response.code + "\nMessage: " + response.message);
         }
     }
+    type body = {
+        function: String
+        subsite: String
+    };
+    let subsiteBody: body = {
+        function: 'switchSite',
+        subsite: name
+    };
+
+    request.send(JSON.stringify(subsiteBody));
 }
 
 
 function buildCarousel() {
     let request: XMLHttpRequest = new XMLHttpRequest();
     request.open("post", "Resources/Scripts/PHP/backend.php", true);
-    // request.responseType = 'json';
     request.onload = () => {
         if (request.readyState == 4 && request.status == 200) {
             let response = JSON.parse(request.response);
-            console.log(response);
+            /**
+             * inserte listItems
+             */
             let element = document.getElementsByClassName("carousel-indicators").item(0);
-            element.insertAdjacentHTML('afterbegin', response.data);
+            element.insertAdjacentHTML('afterbegin', response.data.listItems);
+            /**
+             * insert Carousel
+             */
+            element = document.getElementById("carousel-frame");
+            element.insertAdjacentHTML("beforeend", response.data.carouselItems);
         } else if (request.status != 200) {
             let response = JSON.parse(request.response);
             console.log(response.message);
         }
     }
-    request.send(
-        '{"function":"buildCarousel"}'
-    );
+    type body = {
+        function: String
+    };
+    let carouselBody: body = {
+        function: "buildCarousel"
+    }
+    request.send(JSON.stringify(carouselBody));
 }

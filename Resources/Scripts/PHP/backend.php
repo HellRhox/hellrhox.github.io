@@ -2,6 +2,7 @@
 
 use inc\Carousel;
 use inc\HttpResponses\BadRequest;
+use inc\HttpResponses\NotFound;
 use inc\HttpResponses\Ok;
 
 $loader = require_once $_SERVER["DOCUMENT_ROOT"] . '/vendor/autoload.php';
@@ -20,10 +21,20 @@ call_user_func(function () {
 
 class Controller
 {
-	private $carousel;
+
+	const SUBSITE_PATH = '../../Subsites/';
+	private Carousel $carousel;
 
 	public function __construct() {
-		$this->carousel = new Carousel();
+		try {
+			$this->carousel = new Carousel();
+		} catch (Exception $e) {
+			if ($e->getCode() === 404) {
+				return new NotFound($e->getMessage());
+			} else if ($e->getCode() === 400) {
+				return new BadRequest($e->getMessage());
+			}
+		}
 	}
 
 
@@ -43,15 +54,32 @@ class Controller
 			}
 			switch ($requestBody->function) {
 				case 'buildCarousel':
-					return new Ok($this->carousel->getHtmlListItemsAsHtml());
+
+					return new Ok((object) [
+						"listItems"     => $this->carousel->getHtmlListItemsAsHtml(),
+						"carouselItems" => $this->carousel->getCarouselItemsAsHtml(),
+					]);
 					break;
-				case 'switchSide':
-					return new Ok("tbi");
-					break;
+				case 'switchSite':
+					$subSiteName = $requestBody->subsite ? $requestBody->subsite : null;
+					if ($subSiteName === null) {
+						return new BadRequest("EMPTY_SUB_SITE_GIVEN");
+					} else {
+						return $this->loadSubSite($subSiteName);
+					}
 				default:
 					return new BadRequest("Wrong function");
 
 			}
+		}
+	}
+
+	private function loadSubSite($siteName) {
+		$path = self::SUBSITE_PATH . $siteName . '.html';
+		if (file_exists($path)) {
+			return new Ok(file_get_contents($path));
+		} else {
+			return new NotFound("NO_SUBSITE_FOUND_IN_PATH: " . $path);
 		}
 	}
 }

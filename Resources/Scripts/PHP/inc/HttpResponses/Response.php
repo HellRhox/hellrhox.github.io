@@ -34,9 +34,9 @@ abstract class Response
 
 	public function __construct($code, $message = null, $data = null) {
 		http_response_code($code);
-		$this->code=$code;
-		$this->message=$message;
-		$this->data=$data;
+		$this->code = $code;
+		$this->message = $message;
+		$this->data = $data;
 		echo $this;
 		$this->__destruct();
 	}
