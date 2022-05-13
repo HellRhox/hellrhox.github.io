@@ -4,6 +4,7 @@ use inc\Carousel;
 use inc\HttpResponses\BadRequest;
 use inc\HttpResponses\NotFound;
 use inc\HttpResponses\Ok;
+use inc\SmallerProjectContainer;
 
 $loader = require_once $_SERVER["DOCUMENT_ROOT"] . '/vendor/autoload.php';
 $loader->addPsr4('inc\\', __DIR__);
@@ -24,10 +25,12 @@ class Controller
 
 	const SUBSITE_PATH = '../../Subsites/';
 	private Carousel $carousel;
+	private SmallerProjectContainer $container;
 
 	public function __construct() {
 		try {
 			$this->carousel = new Carousel();
+			$this->container = new SmallerProjectContainer();
 		} catch (Exception $e) {
 			if ($e->getCode() === 404) {
 				return new NotFound($e->getMessage());
@@ -67,6 +70,9 @@ class Controller
 					} else {
 						return $this->loadSubSite($subSiteName);
 					}
+				case'buildSmallProjects':
+					return new Ok("It Works");
+					break;
 				default:
 					return new BadRequest("Wrong function");
 

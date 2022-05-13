@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
     startPHP(true)
 });
 
-
 function startPHP(firstRun: boolean) {
     if (firstRun) {
         document.getElementById("Projects").addEventListener("click", changeActiveNavItemPHP);
@@ -16,10 +15,9 @@ function startPHP(firstRun: boolean) {
     if (activNavItem == "Projects") {
         loadsubSitephp(activNavItem);
         buildCarousel();
-        // smallProjects.smallProjects();
+        buildSmallProjects()
     } else if (activNavItem == "Skills") {
         loadsubSitephp(activNavItem)
-
     } else if (activNavItem == "Contact") {
         loadsubSitephp(activNavItem)
     }
@@ -41,9 +39,8 @@ function changeActiveNavItemPHP(e: Event) {
 }
 
 function loadsubSitephp(name: String) {
-    let request: XMLHttpRequest = new XMLHttpRequest();
-    request.open("post", "Resources/Scripts/PHP/backend.php/", true)
-    request.onload = () => {
+    let api: Api = new Api();
+    let callback = (request: XMLHttpRequest) => {
         if (request.readyState == 4 && request.status == 200) {
             let response = JSON.parse(request.response);
             let oldsubsite = document.getElementsByClassName("content").item(0);
@@ -65,14 +62,13 @@ function loadsubSitephp(name: String) {
         subsite: name
     };
 
-    request.send(JSON.stringify(subsiteBody));
+    api.makeCall(HTTPMethod.POST, callback, subsiteBody);
 }
 
 
 function buildCarousel() {
-    let request: XMLHttpRequest = new XMLHttpRequest();
-    request.open("post", "Resources/Scripts/PHP/backend.php", true);
-    request.onload = () => {
+    let api: Api = new Api();
+    let callback = (request: XMLHttpRequest) => {
         if (request.readyState == 4 && request.status == 200) {
             let response = JSON.parse(request.response);
             /**
@@ -96,5 +92,60 @@ function buildCarousel() {
     let carouselBody: body = {
         function: "buildCarousel"
     }
-    request.send(JSON.stringify(carouselBody));
+    api.makeCall(HTTPMethod.POST, callback, carouselBody)
+}
+
+function buildSmallProjects() {
+    let api: Api = new Api();
+    type body = {
+        function: String
+    };
+    let smallProjectsBody: body = {
+        function: "buildSmallProjects"
+    }
+    /**
+     * can be ignored because the callback will be called with the right variable existing.
+     * @ts-ignore  */
+    let callback = (request: XMLHttpRequest) => {
+        let response
+        // @ts-ignore
+        if (request.readyState == 4 && request.status == 200) {
+            // @ts-ignore
+            response = JSON.parse(request.response);
+            // @ts-ignore
+        } else if (request.status != 200) {
+            // @ts-ignore
+            response = JSON.parse(request.response);
+        }
+        console.log(response.data);
+    };
+    api.makeCall(HTTPMethod.POST, callback, smallProjectsBody)
+}
+
+const enum HTTPMethod {
+    GET = 'get',
+    POST = 'post',
+    PUT = 'put',
+    DELETE = 'delete',
+    PATCH = 'patch',
+    OPTION = 'option',
+}
+
+class Api {
+    static readonly PHP_PATH = "Resources/Scripts/PHP/backend.php";
+    public readonly request: XMLHttpRequest;
+
+    constructor() {
+        this.request = new XMLHttpRequest();
+    }
+
+    makeCall(method: HTTPMethod, callback: (request: XMLHttpRequest) => any, body?: object): void {
+        this.request.open(method, Api.PHP_PATH, true);
+        this.request.onload = event => callback(this.request);
+        if (typeof body !== 'undefined') {
+            this.request.send(JSON.stringify(body));
+        } else {
+            this.request.send();
+        }
+    }
 }
