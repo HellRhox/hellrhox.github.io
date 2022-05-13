@@ -71,7 +71,7 @@ class Controller
 						return $this->loadSubSite($subSiteName);
 					}
 				case'buildSmallProjects':
-					return new Ok("It Works");
+					return new Ok((object) ["smallProjects" => $this->container->getCarouselItemsAsHtml()]);
 					break;
 				default:
 					return new BadRequest("Wrong function");

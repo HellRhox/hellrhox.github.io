@@ -117,7 +117,8 @@ function buildSmallProjects() {
             // @ts-ignore
             response = JSON.parse(request.response);
         }
-        console.log(response.data);
+        let element = document.getElementById("sp");
+        element.insertAdjacentHTML("beforeend", response.data.smallProjects);
     };
     api.makeCall(HTTPMethod.POST, callback, smallProjectsBody)
 }
