@@ -101,7 +101,7 @@ class Carousel
 		$this->setHtmlListItems($items);
 	}
 
-	function buildCarousel() {
+	function buildCarousel(): void{
 		$carouselItems = [];
 		foreach ($this->projectIndex as $pos => $index) {
 			$item = '';
