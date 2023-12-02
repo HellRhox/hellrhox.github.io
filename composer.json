@@ -1,0 +1,34 @@
+{
+  "name": "vendor_name/hellrhox.github.io",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "yannick.bayard",
+      "email": "ya.bayard@gmail.com"
+    }
+  ],
+  "require": {
+  },
+  "require-dev": {
+  },
+  "autoload": {
+    "psr-4": {
+      "inc\\": "Resources/Scripts/PHP/inc"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+    }
+  },
+  "keywords": [
+    "openapitools",
+    "openapi-generator",
+    "openapi",
+    "php",
+    "sdk",
+    "rest",
+    "api"
+  ]
+}
